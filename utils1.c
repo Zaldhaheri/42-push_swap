@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/15 11:54:09 by marvin            #+#    #+#             */
-/*   Updated: 2024/06/15 11:54:09 by marvin           ###   ########.fr       */
+/*   Created: 2024/06/15 12:12:28 by marvin            #+#    #+#             */
+/*   Updated: 2024/06/15 12:12:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
+void ft_putstr(char *s)
+{
+	if (!*s)
+		return ;
+    write(1, s, 1);
+	ft_putstr(s + 1);
+}
 
-#endif
+int main()
+{
+	ft_putstr("hello");
+}
