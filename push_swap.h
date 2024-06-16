@@ -17,4 +17,16 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+typedef struct s_data
+{
+    int count;
+    int i;
+    int j;
+}   t_data;
+
+typedef struct s_list
+{
+    int num;
+}   t_list;
+
 #endif

@@ -18,21 +18,53 @@
 //operations
 //algorithm
 
-int check_valid(int ac, char *av[])
+int is_valid(char *av[], t_data *data)
 {
-	//loop through av
-	//return 
+	while(av[data->i][data->j] == ' ')
+		data->j++;
+	
+	if (av[data->i][data->j] >= '0' && av[data->i][data->j] <= '9')
+		return (1);
+	else if ((av[data->i][data->j] == '-' || av[data->i][data->j] == '+') && 
+			(av[data->i][data->j + 1] >= '0' && av[data->i][data->j + 1] <= '9'))
+	{
+		data->j++;
+		return (1);
+	}
+	return(0);
 }
 
-int check_args(int ac, char *av[])
+int checker(int ac, char *av[], t_data *data)
 {
-	if (!check_valid(ac, av))
+	(void)ac;
+
+	data->i = 1;
+	data->j = 0;
+	while (av[data->i])
+	{
+		data->j = 0;
+		while (is_valid(av, data))
+		{
+			printf("%c", av[data->i][data->j]);
+			data->j++;
+		}
+		printf("\n");
+		data->i++;
+	}
+	return (0);
+}
+
+int check_args(int ac, char *av[], t_data *data)
+{
+	if (!checker(ac, av, data))
+		return (0);
 	return (1);
 }
 
 int main(int ac, char *av[])
 {
-	if (ac == 1 || !check_args(ac, av))
+	t_data data;
+	if (ac == 1 || !check_args(ac, av, &data))
 		return (0);
 	
 }
