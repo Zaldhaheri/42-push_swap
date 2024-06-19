@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:32:46 by marvin            #+#    #+#             */
-/*   Updated: 2024/06/19 19:32:46 by marvin           ###   ########.fr       */
+/*   Created: 2024/06/19 19:47:40 by zaldhahe          #+#    #+#             */
+/*   Updated: 2024/06/19 19:47:40 by zaldhahe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	count_word(char const *s, char c)
+int	count_word(char const *s, char c, t_data *data)
 {
 	int	d;
 
@@ -28,6 +28,7 @@ int	count_word(char const *s, char c)
 				d++;
 		}
 	}
+	data->count = d;
 	return (d);
 }
 
@@ -54,7 +55,7 @@ char	*word(char const *s, char c)
 	return (str);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, t_data *data)
 {
 	int		j;
 	char	**r;
@@ -62,7 +63,7 @@ char	**ft_split(char const *s, char c)
 	j = 0;
 	if (!s)
 		return (NULL);
-	r = malloc (sizeof(char *) * (count_word(s, c) + 1));
+	r = malloc (sizeof(char *) * (count_word(s, c, data) + 1));
 	if (!r)
 		return (NULL);
 	while (*s)

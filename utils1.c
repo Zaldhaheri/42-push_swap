@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/15 12:12:28 by marvin            #+#    #+#             */
-/*   Updated: 2024/06/15 12:12:28 by marvin           ###   ########.fr       */
+/*   Created: 2024/06/19 19:47:30 by zaldhahe          #+#    #+#             */
+/*   Updated: 2024/06/19 19:47:30 by zaldhahe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,30 @@ char	*ft_strdup(const char *str)
 	}
 	dup[i] = '\0';
 	return (dup);
+}
+
+int	ft_atoi(const char *str)
+{
+	int	i;
+	int	s;
+	long	r;
+
+	i = 0;
+	r = 0;
+	s = 1;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i++] == '-')
+			s *= -1;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		r = r * 10 + str[i++] - '0';
+		if (r * s > INT_MAX || r * s < INT_MIN)
+			exit(1);
+			// return (0); //free shit exit
+	}
+	return (r * s);
 }
