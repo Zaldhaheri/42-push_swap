@@ -20,9 +20,10 @@
 
 int is_valid(char *av[], t_data *data)
 {
+	if (av[data->i][0] == 0)
+		return 0;
 	while(av[data->i][data->j] == ' ')
 		data->j++;
-	
 	if (av[data->i][data->j] >= '0' && av[data->i][data->j] <= '9')
 		return (1);
 	else if ((av[data->i][data->j] == '-' || av[data->i][data->j] == '+') && 
@@ -43,12 +44,14 @@ int checker(int ac, char *av[], t_data *data)
 	while (av[data->i])
 	{
 		data->j = 0;
-		while (is_valid(av, data))
+		if (av[data->i][0] == 0)
+			return (1);
+		while (av[data->i][data->j])
 		{
-			printf("%c", av[data->i][data->j]);
+			if(!is_valid(av, data))
+				return(1);
 			data->j++;
 		}
-		printf("\n");
 		data->i++;
 	}
 	return (0);
@@ -57,14 +60,16 @@ int checker(int ac, char *av[], t_data *data)
 int check_args(int ac, char *av[], t_data *data)
 {
 	if (!checker(ac, av, data))
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int main(int ac, char *av[])
 {
 	t_data data;
 	if (ac == 1 || !check_args(ac, av, &data))
-		return (0);
+		printf("Error\n");
+	else
+		printf("1\n");
 	
 }
