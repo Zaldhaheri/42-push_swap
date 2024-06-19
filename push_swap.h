@@ -17,16 +17,26 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+typedef struct s_list
+{
+    int num;
+}   t_list;
+
 typedef struct s_data
 {
     int count;
     int i;
     int j;
+    t_list head;
+    t_list tail;
 }   t_data;
 
-typedef struct s_list
-{
-    int num;
-}   t_list;
+
+//utils
+void ft_putstr(char *s);
+
+//checkers
+int is_valid(char *av[], t_data *data);
+int checker(int ac, char *av[], t_data *data);
 
 #endif

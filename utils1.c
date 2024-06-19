@@ -19,8 +19,3 @@ void ft_putstr(char *s)
     write(1, s, 1);
 	ft_putstr(s + 1);
 }
-
-int main()
-{
-	ft_putstr("hello");
-}
