@@ -18,6 +18,18 @@
 //operations
 //algorithm
 
+char *join_strings(char *av[])
+{
+	int i;
+	char *r;
+
+	i = 1;
+	r = ft_strdup("");
+	while(av[i])
+		r = ft_strjoin(r, av[i++]);
+	return (r);
+}
+
 int main(int ac, char *av[])
 {
 	t_data data;
@@ -25,7 +37,14 @@ int main(int ac, char *av[])
 		ft_putstr("Error\n");
 	else
 		{
-			
+			data.avstr = join_strings(av);
+			ft_putstr("Pass\n");
+			printf("%s\n", data.avstr);
+			data.avsplit = ft_split(data.avstr, ' ');
+			int i = 0;
+			while (data.avsplit[i])
+				printf("%s\n", data.avsplit[i++]);
+
 		}
 	return (0);
 }

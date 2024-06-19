@@ -15,20 +15,22 @@
 int is_valid(char *av[], t_data *data)
 {
 	if (av[data->i][0] == 0)
-		return 0;
+		data->flag = 0;
 	while(av[data->i][data->j] == ' ')
 		data->j++;
 	if (av[data->i][data->j] >= '0' && av[data->i][data->j] <= '9')
-		return (1);
+		data->flag = 1;
 	else if ((av[data->i][data->j] == '-' || av[data->i][data->j] == '+') && 
 			(av[data->i][data->j + 1] >= '0' && av[data->i][data->j + 1] <= '9'))
 	{
+		data->flag = 1;
 		if (data->j != 0 && av[data->i][data->j - 1] != ' ')
-			return (0);
+			data->flag = 0;
 		data->j++;
-		return (1);
 	}
-	return(0);
+	while(av[data->i][data->j + 1] == ' ')
+		data->j++;
+	return(data->flag);
 }
 
 int checker(int ac, char *av[], t_data *data)
@@ -36,7 +38,6 @@ int checker(int ac, char *av[], t_data *data)
 	(void)ac;
 
 	data->i = 1;
-	data->j = 0;
 	while (av[data->i])
 	{
 		data->j = 0;
@@ -44,6 +45,7 @@ int checker(int ac, char *av[], t_data *data)
 			return (0);
 		while (av[data->i][data->j])
 		{
+			data->flag = 0;
 			if(!is_valid(av, data))
 				return(0);
 			data->j++;
