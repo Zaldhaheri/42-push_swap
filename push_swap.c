@@ -59,7 +59,6 @@ char *join_strings(char *av[])
 		r = ft_strjoin(r, av[i++]);
 		free(temp);
 	}
-	return (r);
 }
 
 void	join_nums(t_data *data)
@@ -71,9 +70,8 @@ void	join_nums(t_data *data)
 	while(++i <= data->count - 1)
 	{
 		data->avnum[i] = ft_atoi(data->avsplit[i]);
-		printf("num: %d\n", data->avnum[i]);
 		if (!check_dup(data, i, data->avnum[i]))
-			freexit(NULL, data->avsplit, data->avnum, "Error duplicate\n", data); //free shit exit
+			freexit(NULL, data->avsplit, data->avnum, "Error\n", data); //free shit exit
 	}
 }
 
@@ -85,16 +83,10 @@ int main(int ac, char *av[])
 	else
 		{
 			data.avstr = join_strings(av);
-			ft_putstr("Pass\n");
-			printf("strjoin : %s\n", data.avstr);
 			data.avsplit = ft_split(data.avstr, ' ', &data);
 			freeing(data.avstr, NULL, NULL, NULL);
-			int i = 0;
-			printf("count: %d\n", data.count);
-			while (data.avsplit[i])
-				printf("str: %s\n", data.avsplit[i++]);
 			join_nums(&data);
-			freeing(NULL, data.avsplit, data.avnum, &data);
+			freeing(NULL, data.avsplit, NULL, &data);
 		}
 	return (0);
 }
