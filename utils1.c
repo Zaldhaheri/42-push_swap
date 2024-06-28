@@ -72,7 +72,7 @@ char	*ft_strdup(const char *str)
 	return (dup);
 }
 
-int	ft_atoi(const char *str)
+int	ft_atoi(const char *str, t_data *data)
 {
 	int	i;
 	int	s;
@@ -92,8 +92,7 @@ int	ft_atoi(const char *str)
 	{
 		r = r * 10 + str[i++] - '0';
 		if (r * s > INT_MAX || r * s < INT_MIN)
-			exit(1);
-			// return (0); //free shit exit
+			freexit(data->avstr, data->avsplit, data->avnum, "Error\n", data);
 	}
 	return (r * s);
 }

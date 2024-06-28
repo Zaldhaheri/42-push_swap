@@ -50,7 +50,7 @@ void	join_nums(t_data *data)
 	data->avnum = (int *) malloc(sizeof(int) * data->count);
 	while(++i <= data->count - 1)
 	{
-		data->avnum[i] = ft_atoi(data->avsplit[i]);
+		data->avnum[i] = ft_atoi(data->avsplit[i], data);
 		if (!check_dup(data, i, data->avnum[i]))
 			freexit(NULL, data->avsplit, data->avnum, "Error\n", data); //free shit exit
 	}
