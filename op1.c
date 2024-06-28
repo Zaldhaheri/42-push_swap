@@ -40,6 +40,7 @@ void sb(t_list **b)
 {
     swap(b);
     ft_putstr("sb\n");
+    
 }
 
 // void ra(t_list *a_stack)
