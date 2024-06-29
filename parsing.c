@@ -55,3 +55,24 @@ void	join_nums(t_data *data)
 			freexit(NULL, data->avsplit, data->avnum, "Error\n", data); //free shit exit
 	}
 }
+
+t_list *makestack(t_data *data, t_list *a_stack)
+{
+	t_list *node;
+	int i;
+
+	i = 0;
+	while (i < data->count)
+	{
+		node = ft_lstnew(data->avnum[i]);
+		printf("node %d: %d\n", i, data->avnum[i]);
+		if (!node)
+		{
+			ft_lstclear(&a_stack, free);
+			freexit(NULL, NULL, data->avnum, "Error\n", data);
+		}
+		ft_lstadd_back(&a_stack, node);
+		i++;
+	}
+	return (a_stack);
+}

@@ -32,30 +32,23 @@ void swap(t_list **stack)
 
 void sa(t_list **a)
 {
+    if (!(*a)->next)
+        return ;
     swap(a);
     ft_putstr("sa\n");
 }
 
 void sb(t_list **b)
 {
+    if (!(*b)->next)
+        return ;
     swap(b);
     ft_putstr("sb\n");
-    
 }
 
-// void ra(t_list *a_stack)
-// {
-
-// }
-
-// void rra(t_list *a_stack)
-// {
-
-// }
-
-// void rb(t_list *b_stack)
-// {
-
-// }
-
-// void
+void ss(t_list **a, t_list **b)
+{
+    swap(a);
+    swap(b);
+    ft_putstr("ss\n");
+}

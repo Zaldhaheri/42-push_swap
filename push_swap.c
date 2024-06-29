@@ -29,32 +29,11 @@ void print_stack(t_list *stack)
     }
 }
 
-t_list *makestack(t_data *data, t_list *a_stack)
-{
-	t_list *node;
-	int i;
-
-	i = 0;
-	while (i < data->count)
-	{
-		node = ft_lstnew(data->avnum[i]);
-		printf("node %d: %d\n", i, data->avnum[i]);
-		if (!node)
-		{
-			ft_lstclear(&a_stack, free);
-			freexit(NULL, NULL, data->avnum, "Error\n", data);
-		}
-		ft_lstadd_back(&a_stack, node);
-		i++;
-	}
-	return (a_stack);
-}
-
 int main(int ac, char *av[])
 {
 	t_data data;
 	t_list *a_stack = NULL;
-	//t_list *b_stack;
+	t_list *b_stack;
 
 	if (ac == 1 || !checker(av, &data))
 		ft_putstr("Error\n");
@@ -64,16 +43,16 @@ int main(int ac, char *av[])
 			data.avsplit = ft_split(data.avstr, ' ', &data);
 			join_nums(&data);
 			a_stack = makestack(&data, a_stack);
+			b_stack = NULL;
 			print_stack(a_stack);
-			sa(&a_stack);
-			printf("after sa\n");
+			rra(&a_stack);
+			printf("a\n");
 			print_stack(a_stack);
-			sa(&a_stack);
-			printf("after sa\n");
-			print_stack(a_stack);
+			printf("b\n");
+			print_stack(b_stack);
 			freeing(data.avstr, data.avsplit, data.avnum, &data);
 			ft_lstclear(&a_stack, free);
-			//b_stack = NULL;
+			ft_lstclear(&b_stack, free);
 		}
 	return (0);
 }

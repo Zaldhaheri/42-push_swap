@@ -27,6 +27,23 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	curr->next = new;
 }
 
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	new->next = *lst;
+	*lst = new;
+}
+
+t_list	*ft_lstlast(t_list *lst)
+{
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
+}
+
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*curr;

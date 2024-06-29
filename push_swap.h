@@ -47,6 +47,7 @@ t_list *ft_lstnew(int num);
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstadd_back(t_list **lst, t_list *new);
+t_list	*ft_lstlast(t_list *lst);
 
 //checkers
 int is_valid(char *av[], t_data *data);
@@ -58,9 +59,19 @@ void freeing(char *str, char **string, int *nums, t_data *data);
 void freexit(char *str, char **string, int *nums, char *msg, t_data *data);
 char *join_strings(char *av[]);
 void	join_nums(t_data *data);
+t_list *makestack(t_data *data, t_list *a_stack);
 
 //operations
 void sa(t_list **a);
 void sb(t_list **b);
+void ss(t_list **a, t_list **b);
+void pa(t_list **a, t_list **b);
+void pb(t_list **a, t_list **b);
+void ra(t_list **a);
+void rb(t_list **b);
+void rr(t_list **a, t_list **b);
+void rra(t_list **a);
+void rrb(t_list **b);
+void rrr(t_list **a, t_list **b);
 
 #endif

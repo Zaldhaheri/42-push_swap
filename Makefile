@@ -12,7 +12,8 @@
 
 NAME = push_swap
 
-SRC = push_swap.c checkers.c parsing.c utils1.c utils2.c utils3.c op1.c
+SRC = push_swap.c checkers.c parsing.c utils1.c utils2.c utils3.c op1.c \
+	op2.c op3.c op4.c
 
 OBJ = $(SRC:.c=.o)
 
