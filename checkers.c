@@ -5,12 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:47:45 by zaldhahe          #+#    #+#             */
-/*   Updated: 2024/06/19 19:47:45 by zaldhahe         ###   ########.fr       */
+/*   Created: 2024/06/30 22:24:08 by zaldhahe          #+#    #+#             */
+/*   Updated: 2024/06/30 22:24:08 by zaldhahe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int check_sorted(t_list **a)
+{
+	t_list *curr;
+
+	curr = *a;
+	while(curr->next)
+	{
+		if (curr->content > curr->next->content)
+			return (0);
+		curr = curr->next;
+	}
+	printf("sorted");
+	return (1);
+}
 
 int check_dup(t_data *data, int x, int check)
 {

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/19 19:47:04 by zaldhahe          #+#    #+#             */
-/*   Updated: 2024/06/19 19:47:04 by zaldhahe         ###   ########.fr       */
+/*   Created: 2024/06/30 22:22:55 by zaldhahe          #+#    #+#             */
+/*   Updated: 2024/06/30 22:22:55 by zaldhahe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 typedef struct s_list
 {
     int content;
+    int index;
     struct s_list *next;
 }   t_list;
 
@@ -34,6 +35,9 @@ typedef struct s_data
     char **avsplit;
     int *avnum;
 }   t_data;
+
+//test
+void print_stack(t_list *stack);
 
 //utils
 void ft_putstr(char *s);
@@ -53,6 +57,7 @@ t_list	*ft_lstlast(t_list *lst);
 int is_valid(char *av[], t_data *data);
 int checker(char *av[], t_data *data);
 int check_dup(t_data *data, int x, int check);
+int check_sorted(t_list **a);
 
 //parsing
 void freeing(char *str, char **string, int *nums, t_data *data);
@@ -73,5 +78,14 @@ void rr(t_list **a, t_list **b);
 void rra(t_list **a);
 void rrb(t_list **b);
 void rrr(t_list **a, t_list **b);
+
+//sort utils
+void sort(t_list **a, t_list **b, t_data *data);
+void sort_three(t_list **a);
+void sort_four(t_list **a, t_list **b);
+void sort_five(t_list **a, t_list **b);
+void set_index(t_list **a);
+t_list *get_bignode(t_list **a);
+t_list *get_smolnode(t_list **a);
 
 #endif

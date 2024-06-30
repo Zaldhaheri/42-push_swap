@@ -5,15 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/19 19:47:56 by zaldhahe          #+#    #+#              #
-#    Updated: 2024/06/19 19:47:56 by zaldhahe         ###   ########.fr        #
+#    Created: 2024/06/30 22:24:19 by zaldhahe          #+#    #+#              #
+#    Updated: 2024/06/30 22:24:19 by zaldhahe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
 SRC = push_swap.c checkers.c parsing.c utils1.c utils2.c utils3.c op1.c \
-	op2.c op3.c op4.c
+	op2.c op3.c op4.c sort1.c sort2.c
 
 OBJ = $(SRC:.c=.o)
 
