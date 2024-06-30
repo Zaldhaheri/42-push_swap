@@ -65,7 +65,6 @@ t_list *makestack(t_data *data, t_list *a_stack)
 	while (i < data->count)
 	{
 		node = ft_lstnew(data->avnum[i]);
-		printf("node %d: %d\n", i, data->avnum[i]);
 		if (!node)
 		{
 			ft_lstclear(&a_stack, free);
