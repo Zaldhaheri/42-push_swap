@@ -23,7 +23,6 @@ int check_sorted(t_list **a)
 			return (0);
 		curr = curr->next;
 	}
-	printf("sorted");
 	return (1);
 }
 

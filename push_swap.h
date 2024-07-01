@@ -22,6 +22,9 @@ typedef struct s_list
 {
     int content;
     int index;
+    int cost;
+    int totalcost;
+    struct s_list *targetnode;
     struct s_list *next;
 }   t_list;
 
@@ -52,6 +55,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstadd_back(t_list **lst, t_list *new);
 t_list	*ft_lstlast(t_list *lst);
+int	ft_lstsize(t_list *lst);
 
 //checkers
 int is_valid(char *av[], t_data *data);
@@ -87,5 +91,6 @@ void sort_five(t_list **a, t_list **b);
 void set_index(t_list **a);
 t_list *get_bignode(t_list **a);
 t_list *get_smolnode(t_list **a);
+void turk1(t_list **a, t_list **b, t_data *data);
 
 #endif

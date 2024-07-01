@@ -48,13 +48,7 @@ void sort_five(t_list **a, t_list **b)
 {
 	t_list *smolnode;
 
-	t_list *curr = *a;
 	set_index(a);
-	while (curr)
-	{
-		printf("index of %d is %d\n", curr->content, curr->index);
-		curr = curr->next;
-	}
 	smolnode = get_smolnode(a);
 	if (smolnode->index <= 2)
 	{
@@ -79,7 +73,7 @@ void sort(t_list **a, t_list **b, t_data *data)
 		sort_four(a, b);
 	else if (data->count == 5)
 		sort_five(a, b);
-	printf("-------\n");
-	print_stack(*a);
+	else
+		turk1(a, b, data);
 }
 
