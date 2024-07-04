@@ -6,7 +6,7 @@
 /*   By: zaldhahe <zaldhahe@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 21:07:36 by zaldhahe          #+#    #+#             */
-/*   Updated: 2024/07/04 21:32:19 by zaldhahe         ###   ########.fr       */
+/*   Updated: 2024/07/04 22:00:07 by zaldhahe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,16 @@ void	mintop(t_list **a)
 {
 	t_list	*min;
 	int		mid;
-	int		i;
 
-	i = 0;
 	mid = ft_lstsize(*a) / 2;
 	set_index(a);
-	set_cost(a);
 	min = get_smolnode(a);
-	while (i < min->cost)
+	while (*a != min)
 	{
 		if (min->index < mid)
 			ra(a);
 		else
 			rra(a);
-		i++;
 	}
 }
 

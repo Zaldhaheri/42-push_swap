@@ -32,6 +32,8 @@ int	main(int ac, char *av[])
 		a = makestack(&data, a);
 		if (!check_sorted(&a))
 			sort(&a, &b, &data);
+		if (check_sorted(&a))
+			printf("sorted\n");
 		freeing(data.avstr, data.avsplit, data.avnum, &data);
 		ft_lstclear(&a, free);
 		ft_lstclear(&b, free);
