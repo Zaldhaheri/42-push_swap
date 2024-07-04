@@ -52,24 +52,26 @@ void set_totalcost(t_list **a, t_list **b)
 	}
 }
 
-void set_targetnodeb(t_list **a, t_list **b, t_list *min)
+void set_targetnodeb(t_list **a, t_list **b, t_list *min)//target closest biggest number
 {
 	t_list *curr1;
 	t_list *curr2;
 	long	num;
 	
 	curr2 = *b;
-	num = LONG_MAX;
 	while(curr2)
 	{
 		curr1 = *a;
 		curr2->targetnode = min;
+		num = LONG_MAX;
 		while(curr1)
 		{
-			if (num > curr1->content - curr2->content && curr1->content - curr2->content > 0)// bignum > 7 - 25
+			printf("curr1: %d\n", curr1->content);
+			if (num > curr1->content - curr2->content && curr1->content - curr2->content > 0)//bignum > 6 - 5 = 1 True & 6 > 0 False
 			{
 				num = curr1->content - curr2->content;
 				curr2->targetnode = curr1;
+				printf("NEW TARGET: b: %d, a: %d\n", curr2->content, curr2->targetnode->content);
 			}
 			curr1 = curr1->next;
 		}
@@ -77,20 +79,27 @@ void set_targetnodeb(t_list **a, t_list **b, t_list *min)
 	}
 }
 
-void set_targetnodea(t_list **a, t_list **b, t_list *max)
+void set_targetnodea(t_list **a, t_list **b, t_list *max) //target closest smallest number
 {
 	t_list *curr1;
 	t_list *curr2;
+	long num;
 
 	curr1 = *a;
 	while(curr1)
 	{
 		curr2 = *b;
 		curr1->targetnode = max;
+		num = LONG_MIN; 
 		while(curr2)
 		{
-			if (curr1->targetnode->content > curr2->content && curr1->content > curr2->content)
+			// if (curr1->targetnode->content > curr2->content && curr1->content > curr2->content)
+			// 	curr1->targetnode = curr2;
+			if (num < curr2->content - curr1->content && curr2->content - curr1->content > 0)
+			{
+				num = curr2->content - curr1->content;
 				curr1->targetnode = curr2;
+			}
 			curr2 = curr2->next;
 		}
 		curr1 = curr1->next;
@@ -146,9 +155,9 @@ void turk3(t_list **a, t_list **b)
 	while(i < lowcost->cost)
 	{
 		if (lowcost->index < mid)
-			rb(b);
-		else
 			rrb(b);
+		else
+			rb(b);
 		i++;
 	}
 	i = 0;
@@ -156,9 +165,9 @@ void turk3(t_list **a, t_list **b)
 	while(i < lowcost->targetnode->cost)
 	{
 		if (lowcost->targetnode->index < mid)
-			ra(a);
-		else
 			rra(a);
+		else
+			ra(a);
 		i++;
 	}
 }
@@ -249,6 +258,7 @@ void turk1(t_list **a, t_list **b, t_data *data)
 			curr2 = curr2->next;
 		}
 		turk3(a, b);
+		printf("psuhing: %d\n", (*b)->content);
 		pa(a, b);
 		printf("------a------\n");
 		print_stack(*a);
