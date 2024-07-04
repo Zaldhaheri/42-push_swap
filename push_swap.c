@@ -37,7 +37,6 @@ void set_cost(t_list **a)
 	}
 }
 
-
 void set_totalcost(t_list **a, t_list **b)
 {
 	t_list *curr;
@@ -66,12 +65,10 @@ void set_targetnodeb(t_list **a, t_list **b, t_list *min)//target closest bigges
 		num = LONG_MAX;
 		while(curr1)
 		{
-			printf("curr1: %d\n", curr1->content);
 			if (num > curr1->content - curr2->content && curr1->content - curr2->content > 0)//bignum > 6 - 5 = 1 True & 6 > 0 False
 			{
 				num = curr1->content - curr2->content;
 				curr2->targetnode = curr1;
-				printf("NEW TARGET: b: %d, a: %d\n", curr2->content, curr2->targetnode->content);
 			}
 			curr1 = curr1->next;
 		}
@@ -79,7 +76,7 @@ void set_targetnodeb(t_list **a, t_list **b, t_list *min)//target closest bigges
 	}
 }
 
-void set_targetnodea(t_list **a, t_list **b, t_list *max) //target closest smallest number
+void set_targetnodea(t_list **a, t_list **b, t_list *max) //target closest smaller number
 {
 	t_list *curr1;
 	t_list *curr2;
@@ -90,12 +87,12 @@ void set_targetnodea(t_list **a, t_list **b, t_list *max) //target closest small
 	{
 		curr2 = *b;
 		curr1->targetnode = max;
-		num = LONG_MIN; 
+		num = LONG_MIN;
 		while(curr2)
 		{
 			// if (curr1->targetnode->content > curr2->content && curr1->content > curr2->content)
 			// 	curr1->targetnode = curr2;
-			if (num < curr2->content - curr1->content && curr2->content - curr1->content > 0)
+			if (num < curr2->content - curr1->content && curr2->content < curr1->content)
 			{
 				num = curr2->content - curr1->content;
 				curr1->targetnode = curr2;
@@ -133,7 +130,7 @@ void mintop(t_list **a)
 	set_index(a);
 	set_cost(a);
 	min = get_smolnode(a);
-	while(i <= min->cost)
+	while(i < min->cost)
 	{
 		if (min->index < mid)
 			ra(a);
@@ -152,22 +149,22 @@ void turk3(t_list **a, t_list **b)
 	i = 0;
 	mid = ft_lstsize(*b) / 2;
 	lowcost = get_lowcost(b);
-	while(i < lowcost->cost)
+	while(*b != lowcost)
 	{
 		if (lowcost->index < mid)
-			rrb(b);
-		else
 			rb(b);
+		else
+			rrb(b);
 		i++;
 	}
 	i = 0;
 	mid = ft_lstsize(*a) / 2;
-	while(i < lowcost->targetnode->cost)
+	while(*a != lowcost->targetnode)
 	{
 		if (lowcost->targetnode->index < mid)
-			rra(a);
-		else
 			ra(a);
+		else
+			rra(a);
 		i++;
 	}
 }
@@ -181,7 +178,7 @@ void turk2(t_list **a, t_list **b)
 	i = 0;
 	mid = ft_lstsize(*a) / 2;
 	lowcost = get_lowcost(a);
-	while(i < lowcost->cost)
+	while(*a != lowcost)
 	{
 		if (lowcost->index < mid)
 			ra(a);
@@ -191,13 +188,12 @@ void turk2(t_list **a, t_list **b)
 	}
 	i = 0;
 	mid = ft_lstsize(*b) / 2;
-	while(i < lowcost->targetnode->cost)
+	while(*b != lowcost->targetnode)
 	{
-		if (lowcost->targetnode->index < mid)
-			rb(b);
+		if (lowcost->targetnode->index < mid) //index above mid ra, else rra
+			rb(b); //last becomes first
 		else
-			rrb(b);
-		i++;
+			rrb(b); //first becomes last
 	}
 }
 
@@ -206,8 +202,6 @@ void turk1(t_list **a, t_list **b, t_data *data)
 	(void)data;
 	t_list *max;
 	t_list *min;
-	t_list *curr1 = *a;
-	t_list *curr2 = *b;
 
 	pb(a, b);
 	pb(a, b);
@@ -216,55 +210,17 @@ void turk1(t_list **a, t_list **b, t_data *data)
 		max = get_bignode(b);
 		set_targetnodea(a, b, max);
 		set_totalcost(a, b);
-		curr1 = *a;
-		curr2 = *b;
-		while(curr1)
-		{
-			printf("content: %d, index: %d, cost: %d, totalcost: %d, targetcontent: %d\n", curr1->content, curr1->index, curr1->cost, curr1->totalcost, curr1->targetnode->content);
-			curr1 = curr1->next;
-		}
-		printf("\n");
-		while(curr2)
-		{
-			printf("content: %d, index: %d, cost: %d\n", curr2->content, curr2->index, curr2->cost);
-			curr2 = curr2->next;
-		}
 		turk2(a, b);
 		pb(a, b);
-		printf("------a------\n");
-		print_stack(*a);
-		printf("------b------\n");
-		print_stack(*b);
-		printf("-------------\n");
 	}
 	sort_three(a);
 	while(ft_lstsize(*b) > 0)
 	{
 		min = get_smolnode(a);
-		printf("min: %d\n", min->content);
 		set_targetnodeb(a, b, min);
 		set_totalcost(b, a);
-		curr1 = *b;
-		curr2 = *a;
-		while(curr1)
-		{
-			printf("content: %d, index: %d, cost: %d, totalcost: %d, targetcontent: %d\n", curr1->content, curr1->index, curr1->cost, curr1->totalcost, curr1->targetnode->content);
-			curr1 = curr1->next;
-		}
-		printf("\n");
-		while(curr2)
-		{
-			printf("content: %d, index: %d, cost: %d\n", curr2->content, curr2->index, curr2->cost);
-			curr2 = curr2->next;
-		}
 		turk3(a, b);
-		printf("psuhing: %d\n", (*b)->content);
 		pa(a, b);
-		printf("------a------\n");
-		print_stack(*a);
-		printf("------b------\n");
-		print_stack(*b);
-		printf("-------------\n");
 	}
 	mintop(a);
 }
@@ -300,11 +256,13 @@ int main(int ac, char *av[])
 			a = makestack(&data, a);
 			if (!check_sorted(&a))
 				sort(&a, &b, &data);
-			printf("a-----\n");
-			print_stack(a);
-			printf("b-----\n");
-			print_stack(b);
+			// printf("a-----\n");
+			// print_stack(a);
+			// printf("b-----\n");
+			// print_stack(b);
 			freeing(data.avstr, data.avsplit, data.avnum, &data);
+			if (check_sorted(&a))
+				printf("sorted\n");
 			ft_lstclear(&a, free);
 			ft_lstclear(&b, free);
 		}
