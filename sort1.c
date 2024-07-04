@@ -12,9 +12,23 @@
 
 #include "push_swap.h"
 
-void sort_three(t_list **a)
+void	set_index(t_list **a)
 {
-	t_list *bignode;
+	int		i;
+	t_list	*curr;
+
+	i = 0;
+	curr = *a;
+	while (curr)
+	{
+		curr->index = i++;
+		curr = curr->next;
+	}
+}
+
+void	sort_three(t_list **a)
+{
+	t_list	*bignode;
 
 	bignode = get_bignode(a);
 	if (bignode == *a)
@@ -25,45 +39,45 @@ void sort_three(t_list **a)
 		sa(a);
 }
 
-void sort_four(t_list **a, t_list **b)
+void	sort_four(t_list **a, t_list **b)
 {
-	t_list *smolnode;
+	t_list	*smolnode;
 
 	smolnode = get_smolnode(a);
-	if (smolnode == (*a)->next) //2nd
+	if (smolnode == (*a)->next)
 		ra(a);
-	else if (smolnode == (*a)->next->next) //3rd
+	else if (smolnode == (*a)->next->next)
 	{
 		ra(a);
 		ra(a);
 	}
-	else if (smolnode == (*a)->next->next->next) //last
+	else if (smolnode == (*a)->next->next->next)
 		rra(a);
 	pb(a, b);
 	sort_three(a);
 	pa(a, b);
 }
 
-void sort_five(t_list **a, t_list **b)
+void	sort_five(t_list **a, t_list **b)
 {
-	t_list *smolnode;
+	t_list	*smolnode;
 
 	set_index(a);
 	smolnode = get_smolnode(a);
 	if (smolnode->index <= 2)
 	{
-		while(smolnode != *a)
+		while (smolnode != *a)
 			ra(a);
 	}
 	else
-		while(smolnode != *a)
+		while (smolnode != *a)
 			rra(a);
 	pb(a, b);
 	sort_four(a, b);
 	pa(a, b);
 }
 
-void sort(t_list **a, t_list **b, t_data *data)
+void	sort(t_list **a, t_list **b, t_data *data)
 {
 	if (data->count == 2 && (*a)->content > (*a)->next->content)
 		rra(a);
@@ -76,4 +90,3 @@ void sort(t_list **a, t_list **b, t_data *data)
 	else
 		turk1(a, b, data);
 }
-

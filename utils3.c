@@ -12,18 +12,6 @@
 
 #include "push_swap.h"
 
-t_list *ft_lstnew(int num)
-{
-    t_list *root;
-
-    root = malloc(sizeof(t_list));
-    if (!root)
-        return (NULL);
-    root->content = num;
-    root->next = NULL;    
-    return (root);
-}
-
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*curr;
@@ -74,7 +62,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	(void)del;
-
 	if (del != NULL)
 	{
 		if (lst)

@@ -13,7 +13,7 @@
 NAME = push_swap
 
 SRC = push_swap.c checkers.c parsing.c utils1.c utils2.c utils3.c utils4.c \
-op1.c op2.c op3.c op4.c sort1.c sort2.c
+op1.c op2.c op3.c op4.c sort1.c sort2.c sort3.c sort4.c
 
 OBJ = $(SRC:.c=.o)
 

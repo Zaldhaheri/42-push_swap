@@ -12,12 +12,12 @@
 
 #include "push_swap.h"
 
-int check_sorted(t_list **a)
+int	check_sorted(t_list **a)
 {
-	t_list *curr;
+	t_list	*curr;
 
 	curr = *a;
-	while(curr->next)
+	while (curr->next)
 	{
 		if (curr->content > curr->next->content)
 			return (0);
@@ -26,12 +26,12 @@ int check_sorted(t_list **a)
 	return (1);
 }
 
-int check_dup(t_data *data, int x, int check)
+int	check_dup(t_data *data, int x, int check)
 {
-	int i;
+	int	i;
 
 	i = -1;
-	while(++i < x)
+	while (++i < x)
 		if (check == data->avnum[i])
 			return (0);
 	return (1);

@@ -12,28 +12,14 @@
 
 #include "push_swap.h"
 
-void set_index(t_list **a)
+t_list	*get_bignode(t_list **a)
 {
-	int i;
-	t_list *curr;
-
-	i = 0;
-	curr = *a;
-	while(curr)
-	{
-		curr->index = i++;
-		curr = curr->next;
-	}
-}
-
-t_list *get_bignode(t_list **a)
-{
-	t_list *curr;
-	t_list *bignode;
+	t_list	*curr;
+	t_list	*bignode;
 
 	curr = *a;
 	bignode = curr;
-	while(curr)
+	while (curr)
 	{
 		if (bignode->content < curr->content)
 			bignode = curr;
@@ -42,18 +28,68 @@ t_list *get_bignode(t_list **a)
 	return (bignode);
 }
 
-t_list *get_smolnode(t_list **a)
+t_list	*get_smolnode(t_list **a)
 {
-	t_list *curr;
-	t_list *smolnode;
+	t_list	*curr;
+	t_list	*smolnode;
 
 	curr = *a;
 	smolnode = curr;
-	while(curr)
+	while (curr)
 	{
 		if (smolnode->content > curr->content)
 			smolnode = curr;
 		curr = curr->next;
 	}
 	return (smolnode);
+}
+
+t_list	*get_lowcost(t_list **a)
+{
+	t_list	*curr;
+	t_list	*lowcost;
+
+	curr = *a;
+	lowcost = curr;
+	while (curr)
+	{
+		if (lowcost->totalcost > curr->totalcost)
+			lowcost = curr;
+		curr = curr->next;
+	}
+	return (lowcost);
+}
+
+void	set_totalcost(t_list **a, t_list **b)
+{
+	t_list	*curr;
+
+	curr = *a;
+	set_cost(a);
+	set_cost(b);
+	while (curr)
+	{
+		curr->totalcost = curr->cost + curr->targetnode->cost;
+		curr = curr->next;
+	}
+}
+
+void	set_cost(t_list **a)
+{
+	t_list	*curr;
+	int		count;
+	int		mid;
+
+	set_index(a);
+	count = ft_lstsize(*a);
+	mid = count / 2;
+	curr = *a;
+	while (curr)
+	{
+		if (curr->index <= mid)
+			curr->cost = curr->index;
+		else
+			curr->cost = count - curr->index;
+		curr = curr->next;
+	}
 }

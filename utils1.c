@@ -12,11 +12,11 @@
 
 #include "push_swap.h"
 
-void ft_putstr(char *s)
+void	ft_putstr(char *s)
 {
 	if (!*s)
 		return ;
-    write(1, s, 1);
+	write(1, s, 1);
 	ft_putstr(s + 1);
 }
 
@@ -74,8 +74,8 @@ char	*ft_strdup(const char *str)
 
 int	ft_atoi(const char *str, t_data *data)
 {
-	int	i;
-	int	s;
+	int		i;
+	int		s;
 	long	r;
 
 	i = 0;
@@ -92,7 +92,7 @@ int	ft_atoi(const char *str, t_data *data)
 	{
 		r = r * 10 + str[i++] - '0';
 		if (r * s > INT_MAX || r * s < INT_MIN)
-			freexit(data->avstr, data->avsplit, data->avnum, "Error\n", data);
+			freexit(data->avstr, data->avsplit, data->avnum, data);
 	}
 	return (r * s);
 }
