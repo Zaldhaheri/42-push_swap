@@ -19,7 +19,7 @@ OBJ = $(SRC:.c=.o)
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
+CFLAGS = -Wall -Werror -Wextra -g3
 
 COMPILE = $(CC) $(CFLAGS)
 
