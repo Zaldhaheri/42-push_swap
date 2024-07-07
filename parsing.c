@@ -63,7 +63,7 @@ void	join_nums(t_data *data)
 	{
 		data->avnum[i] = ft_atoi(data->avsplit[i], data);
 		if (!check_dup(data, i, data->avnum[i]))
-			freexit(NULL, data->avsplit, data->avnum, data);
+			freexit(data->avstr, data->avsplit, data->avnum, data);
 	}
 }
 
